@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "data-engineering"
+version = "0.1.0"
+description = "Repo to setup a data engineering task"
+authors = ["u26r89 <NagaVenkataHarisyam.Manda@avl.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pandas = "^1.4.0"
+beautifulsoup4 = "^4.10.0"
+click = "^8.0.3"
+hydra-core = "^1.1.1"
+httpx = "^0.21.3"
+prefect = "^0.15.12"
+rich = "^11.0.0"
+
+[tool.poetry.dev-dependencies]
+pandas = "^1.4.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
