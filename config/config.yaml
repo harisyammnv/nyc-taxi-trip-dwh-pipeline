@@ -1,5 +1,5 @@
 DATA:
   NYC_DATA_URL: https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page
-  TAXI_TYPES: ['yellow', 'green']
+  TAXI_TYPES: ['green', 'yellow']
   FROM_DATE: 2021-01-01
   TO_DATE: 2022-01-01

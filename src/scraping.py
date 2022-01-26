@@ -23,12 +23,14 @@ class Scraping:
         return response
     
     def _extract_content(self, response: Response):
-        data_links = dict(zip(self.cfg.DATA['TAXI_TYPES'], [[]]*2))
-        for link in BeautifulSoup(response, parse_only=SoupStrainer('a')):
-            if link.has_attr('href'):
-                for taxi in  self.cfg.DATA['TAXI_TYPES']:
-                    if taxi in link['href'] and 'https' in link['href']:
-                        data_links[taxi].append(link['href'])
+        data_links = dict()
+        for taxi in self.cfg.DATA['TAXI_TYPES']:
+            url_links = []
+            for link in BeautifulSoup(response, parse_only=SoupStrainer('a')):
+                if link.has_attr('href') and link['href'].startswith("https"):
+                    if taxi in link['href']:
+                        url_links.append(link['href'])
+            data_links[taxi]=url_links
         return data_links
     
     def _write_file(self, data_download_links):

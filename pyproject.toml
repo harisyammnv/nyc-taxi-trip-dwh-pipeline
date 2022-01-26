@@ -13,6 +13,7 @@ hydra-core = "^1.1.1"
 httpx = "^0.21.3"
 prefect = "^0.15.12"
 rich = "^11.0.0"
+tqdm = "^4.62.3"
 
 [tool.poetry.dev-dependencies]
 pandas = "^1.4.0"
