@@ -1,6 +1,6 @@
 from pathlib import Path
 from tqdm import tqdm
-import requests
+import httpx
 class DownloadException(Exception):
     pass
 
@@ -12,11 +12,10 @@ class Download:
     
     def download_files(self, url: str, file_name: str):
         try:
-            response = requests.get(url, stream=True)
-
-            with open(Path(self.file_loc).joinpath(file_name), "wb") as handle:
-                for data in tqdm(response.iter_content()):
-                    handle.write(data)
+            with httpx.stream("GET", url) as res:
+                with open(Path(self.file_loc).joinpath(file_name), "wb") as handle:
+                    for data in tqdm(res.iter_bytes()):
+                        handle.write(data)
         except Exception as e:
             raise DownloadException(f"Could not download file from url: {url} because: {e}")
 
