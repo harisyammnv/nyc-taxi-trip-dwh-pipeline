@@ -7,16 +7,15 @@ from pathlib import Path
 import pandas as pd
 from datetime import datetime
 import re
-from hydra.utils import get_original_cwd
 class ScrapingException(Exception):
     pass
 
 
 class Scraping:
     
-    def __init__(self, cfg: DictConfig) -> None:
+    def __init__(self, cfg) -> None:
         self.cfg = cfg
-        self.target_url = self.cfg.DATA['NYC_DATA_URL']
+        self.target_url = self.cfg['DATA']['NYC_DATA_URL']
             
     def _get_content(self) -> Response:
         response = httpx.get(self.target_url)
@@ -24,7 +23,7 @@ class Scraping:
     
     def _extract_content(self, response: Response, date_limits: list) -> dict:
         data_links = dict()
-        for taxi in self.cfg.DATA['TAXI_TYPES']:
+        for taxi in self.cfg["DATA"]['TAXI_TYPES']:
             url_links = []
             for link in BeautifulSoup(response, parse_only=SoupStrainer('a')):
                 if link.has_attr('href') and link['href'].startswith("https"):
@@ -36,13 +35,14 @@ class Scraping:
         return data_links
     
     def _write_file(self, data_download_links):
-        with open(Path(get_original_cwd()).joinpath('data/download_links.json'), 'w') as fp:
+        with open(Path.cwd().joinpath('data/download_links.json'), 'w') as fp:
+            # Path(get_original_cwd()).joinpath('data/download_links.json')
             json.dump(data_download_links, fp)
     
     def _formulate_link_limits(self):
         try:
-            from_date = datetime.fromisoformat(self.cfg.DATA['FROM_DATE'])
-            to_date = datetime.fromisoformat(self.cfg.DATA['TO_DATE'])
+            from_date = datetime.fromisoformat(self.cfg["DATA"]['FROM_DATE'])
+            to_date = datetime.fromisoformat(self.cfg["DATA"]['TO_DATE'])
             date_limits = pd.date_range(str(from_date),str(to_date), freq='MS').strftime("%Y-%m").tolist()
             
         except ScrapingException as ex:
