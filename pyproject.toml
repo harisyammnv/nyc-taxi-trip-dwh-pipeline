@@ -16,9 +16,11 @@ rich = "^11.0.0"
 tqdm = "^4.62.3"
 PyYAML = "^6.0"
 toml = "^0.10.2"
+pyarrow = "^7.0.0"
 
 [tool.poetry.dev-dependencies]
 pandas = "^1.4.0"
+black = {version = "^22.1.0", allow-prereleases = true}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

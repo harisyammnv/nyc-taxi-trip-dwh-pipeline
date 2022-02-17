@@ -56,5 +56,6 @@ class Scraping:
         if response.status_code == 200:
             data_download_links = self._extract_content(response=response, date_limits=date_limits)
             self._write_file(data_download_links=data_download_links)
+            return data_download_links
         else:
             raise ScrapingException(f"Could not scrape because of: {response.status_code}")
