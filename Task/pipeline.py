@@ -69,4 +69,4 @@ with Flow(FLOW_NAME, executor=LocalDaskExecutor()) as flow:
     ingest_raw_data.map(file_name=data_list, conf=unmapped(conf))
 
 flow.visualize()
-flow.run()
+#flow.run()
