@@ -1,0 +1,1 @@
+{"green": ["https://s3.amazonaws.com/nyc-tlc/trip+data/green_tripdata_2021-06.csv", "https://nyc-tlc.s3.amazonaws.com/trip+data/green_tripdata_2021-07.csv"], "yellow": ["https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2021-06.csv", "https://nyc-tlc.s3.amazonaws.com/trip+data/yellow_tripdata_2021-07.csv"]}

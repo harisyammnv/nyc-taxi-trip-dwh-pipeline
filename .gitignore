@@ -2,3 +2,5 @@ outputs/
 __pycache__/
 data/*.csv
 *.csv
+*.parquet
+data_pgadmin/

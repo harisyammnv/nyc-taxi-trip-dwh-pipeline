@@ -3,4 +3,10 @@ NYC_DATA_URL= "https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page"
 TAXI_TYPES= ['green', 'yellow']
 FROM_DATE= "2021-06-01"
 TO_DATE= "2021-07-01"
-URL_JSON= "data/download_links.json"
+URL_JSON= "nyc_raw_data/download_links.json"
+
+[DB]
+DB_NAME = "ny_taxi"
+PG_PORT=5492
+YELLOW_TAXI_TABLE = "yellow_taxi_trips"
+GREEN_TAXI_TABLE = "green_taxi_trips"

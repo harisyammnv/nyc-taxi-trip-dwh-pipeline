@@ -35,8 +35,7 @@ class Scraping:
         return data_links
     
     def _write_file(self, data_download_links):
-        with open(Path.cwd().joinpath('data/download_links.json'), 'w') as fp:
-            # Path(get_original_cwd()).joinpath('data/download_links.json')
+        with open(Path.cwd().joinpath(self.cfg['DATA']['URL_JSON']), 'w') as fp:
             json.dump(data_download_links, fp)
     
     def _formulate_link_limits(self):
